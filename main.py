@@ -258,6 +258,7 @@ class Window(Adw.ApplicationWindow):
 
     def _present_save_dialog(self, _button):
         self.save_dialog.set_initial_folder(self.output_folder)
+        self.save_dialog.set_initial_name("output.pdf")
 
         self.save_dialog.save(
             parent=self, cancellable=None, callback=self._on_save_file

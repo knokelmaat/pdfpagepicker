@@ -260,9 +260,13 @@ class Window(Adw.ApplicationWindow):
         self.output_folder = file.get_parent()
 
         output_doc = self._generate_output_doc()
-        output_doc.save(file.get_path())
+        file_path = file.get_path()
+        if not file_path.endswith(".pdf"):
+            file_path += ".pdf"
+        print("file_path")
+        output_doc.save(file_path)
 
-        file_launcher = Gtk.FileLauncher(file=file)
+        file_launcher = Gtk.FileLauncher(file=Gio.File.new_for_path(file_path))
         file_launcher.launch()
 
     def _generate_output_doc(self):
